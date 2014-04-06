@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <employee employee_id="4" employee_name="matsumana" hiredate="2006-05-01" salary="1000.00" version_no="1"/>
+    <employee employee_id="3" employee_name="WARD" hiredate="1981-02-22" salary="1250.00" version_no="1"/>
+    <employee employee_id="2" employee_name="ALLEN" hiredate="1981-02-20" salary="1600.00" version_no="1"/>
+    <employee employee_id="1" employee_name="SMITH" hiredate="1980-12-17" salary="800.00" version_no="1"/>
+</dataset>

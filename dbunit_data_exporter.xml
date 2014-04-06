@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>jp.co.camnet.macs</groupId>
+    <artifactId>dbunit_data_exporter</artifactId>
+    <version>1.0</version>
+
+    <name>dbunit_data_exporter</name>
+
+    <!--
+    usage:
+
+    $ mvn -f dbunit_data_exporter.xml dbunit:export -Ddbunit.export.host=localhost -Ddbunit.export.port=5432 -Ddbunit.export.database=testdb -Ddbunit.export.user=postgres -Ddbunit.export.password= -Ddest=export.xml
+    -->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>dbunit-maven-plugin</artifactId>
+                <version>1.0-beta-3</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>9.3-1101-jdbc41</version>
+                        <scope>compile</scope>
+                    </dependency>
+                    <!--<dependency>-->
+                        <!--<groupId>org.apache.poi</groupId>-->
+                        <!--<artifactId>poi</artifactId>-->
+                        <!--<version>3.2-FINAL</version>-->
+                        <!--<scope>compile</scope>-->
+                    <!--</dependency>-->
+                </dependencies>
+                <configuration>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://${dbunit.export.host}:${dbunit.export.port}/${dbunit.export.database}</url>
+                    <username>${dbunit.export.user}</username>
+                    <password>${dbunit.export.password}</password>
+                    <format>flat</format>
+                    <tables>
+                        <list>
+                            <name>employee</name>
+                        </list>
+                    </tables>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
