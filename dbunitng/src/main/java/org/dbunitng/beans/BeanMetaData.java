@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import com.google.common.base.CaseFormat;
+import lombok.ToString;
 import org.dbunitng.util.PropertyUtil;
 
 /**
@@ -29,6 +30,7 @@ import org.dbunitng.util.PropertyUtil;
  * @author jyukutyo
  * 
  */
+@ToString
 public class BeanMetaData {
 
 	/** メタ情報の対象クラス */
@@ -74,7 +76,7 @@ public class BeanMetaData {
 							field,
 							null,
 							null);
-					propertyMap.put(fname.toLowerCase(), property);
+                    propertyMap.put(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, fname), property);
 				} else if (PropertyUtil.isPublicField(field)) {
 					property.setField(field);
 				}
@@ -167,7 +169,7 @@ public class BeanMetaData {
 		Class<?> type = setter.getParameterTypes()[0];
 		if (property == null) {
 			property = new BeanProperty(name, type, null, null, setter);
-			propertyMap.put(lowerName, property);
+            propertyMap.put(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name), property);
 		} else {
 			property.setSetter(setter);
 		}
@@ -187,7 +189,7 @@ public class BeanMetaData {
 		Class<?> type = getter.getReturnType();
 		if (property == null) {
 			property = new BeanProperty(name, type, null, getter, null);
-			propertyMap.put(lowerName, property);
+            propertyMap.put(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name), property);
 		} else {
 			property.setGetter(getter);
 		}
@@ -200,11 +202,6 @@ public class BeanMetaData {
 	 */
 	public Set<String> getNameSet() {
 		return propertyMap.keySet();
-	}
-
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 
 	/**

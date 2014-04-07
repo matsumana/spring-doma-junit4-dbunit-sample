@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.dbunit.database.AmbiguousTableNameException;
 import org.dbunit.dataset.Column;
 import org.dbunit.dataset.DefaultDataSet;
 import org.dbunit.dataset.IDataSet;
@@ -29,6 +30,7 @@ import org.dbunit.dataset.datatype.DataType;
 import org.dbunitng.beans.BeanMetaData;
 import org.dbunitng.beans.BeanMetaDataFactory;
 import org.dbunitng.beans.BeanProperty;
+import org.dbunitng.exception.DbUnitNGRuntimeException;
 
 /**
  * Beanのリストのコンバータ。
@@ -80,9 +82,13 @@ public class BeanListConverter {
 		}
 
 		addTable();
-		return new DefaultDataSet(tableMap.values().toArray(
-			new BeanListTable[tableMap.size()]));
-	}
+        try {
+            return new DefaultDataSet(tableMap.values().toArray(
+                new BeanListTable[tableMap.size()]));
+        } catch (AmbiguousTableNameException e) {
+            throw new DbUnitNGRuntimeException(e);
+        }
+    }
 
 	/**
 	 * テーブルを追加する。

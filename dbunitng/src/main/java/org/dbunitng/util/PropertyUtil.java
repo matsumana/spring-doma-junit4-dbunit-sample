@@ -17,7 +17,7 @@ package org.dbunitng.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import org.apache.commons.lang.StringUtils;
+import com.google.common.base.Strings;
 
 /**
  * プロパティ関連のユーティリティ。
@@ -39,7 +39,7 @@ public class PropertyUtil {
 	 * @return プロパティ名
 	 */
 	public static String decapitalizePropertyName(String name) {
-		if (StringUtils.isEmpty(name)) {
+		if (Strings.isNullOrEmpty(name)) {
 			return name;
 		}
 		if (name.length() > 1 && Character.isUpperCase(name.charAt(1))

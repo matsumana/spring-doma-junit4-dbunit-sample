@@ -18,7 +18,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
+import lombok.ToString;
 import org.dbunitng.exception.DbUnitNGRuntimeException;
 
 /**
@@ -27,6 +27,7 @@ import org.dbunitng.exception.DbUnitNGRuntimeException;
  * @author jyukutyo
  * 
  */
+@ToString
 public class BeanProperty {
 
 	/** 引数なしを表す定数 */
@@ -135,10 +136,5 @@ public class BeanProperty {
 		} catch (InvocationTargetException e) {
 			throw new DbUnitNGRuntimeException(e);
 		}
-	}
-
-	@Override
-	public String toString() {
-		return ToStringBuilder.reflectionToString(this);
 	}
 }
