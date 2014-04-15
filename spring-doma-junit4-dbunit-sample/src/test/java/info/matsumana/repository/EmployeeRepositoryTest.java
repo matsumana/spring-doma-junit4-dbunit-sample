@@ -61,7 +61,7 @@ import java.util.List;
 public class EmployeeRepositoryTest {
 
     @Inject
-    EmployeeRepositoryImpl sut;
+    EmployeeRepository sut;
 
     /**
      * 引数で受け取ったクラスのclassファイルがある物理ディレクトリパスを取得する
