@@ -74,7 +74,6 @@ public class EmployeeRepositoryTest {
     }
 
     @Test
-//    @Rollback(false)  // これを書くとコミットされる （assert failでもコミットされるので注意）
     @DatabaseSetup("EmployeeRepositoryTest_findAll_000_data.xml")
     public void findAllのテスト() throws Exception {
 
